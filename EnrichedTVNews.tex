@@ -53,7 +53,9 @@ EURECOM, Sophia Antipolis, France, \\
 %%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-Describing multimedia content in general and TV programs in particular is a hard problem. Relying on subtitles to extract named entities that can be used to index fragments of a program is a common method. However, this approach is limited to what is being said in a program and written in a subtitle, therefore lacking a broader context. Furthermore, this type of index is restricted to a flat list of entities. In this paper, we combine the power of non-structured documents with structured data coming from DBpedia to generate a much richer, context aware metadata of a TV program. We demonstrate that we can harvest a rich context by expanding an initial set of named entities detected in a TV fragment. We evaluate our approach on a TV news show.
+The presence of appropriate TV content annotations and usage of custom visualization strategies are key factors to enhance the viewer experience. In this paper, we present an approach that leverages on the knowledge present on the Web for identifying and enriching relevant items inside a News video and displaying them in a timely and user friendly fashion. 
+In particular, this second screen prototype (i) collects and offers information about persons, locations, organizations and concepts occurring in the newscast, and (ii) combines them for enriching the underlying story along five main dimensions: in other sources, expert's opinions, timeline of the news, in depth information, and geo-localized comments and remarks from other viewers.  
+Starting from preliminary insights coming from the named entities spotted on the video subtitles, we expand this initial context to a broader event representation by relying in the knowledge of other non-structured Web documents talking about the same fact. This makes possible to generate a much richer, context aware metadata of a TV program that boost the viewer interaction and opens new possibilities in the hyperlinked television domain. 
 
 \keywords{Television, Visual Summarization, Topic Generation}
 \end{abstract}
@@ -66,17 +68,38 @@ Describing multimedia content in general and TV programs in particular is a hard
 
 People consume news from multiple sources, such as television, Web, radio and newspaper. Typically the activities using these sources are independent~\cite{}. For example, we watch the newscast on TV at a fixed time of the day to get an overview of the main news. We use the Web to keep track of the News throughout the day, and when we have more time to spare we actively browse the Web to explore the news items that we are interested in. At one hand this separation is natural as the activities have different characteristics and are integrated into our lifes in our way. At the other hand the different sources can complement each other and when consumed as such will enrich our news experience. The problem is that in practice it is difficult to manually link the different activities together. How often did you think of something you wanted to lookup on the Web while watching a newscast, but didn't, or while browsing the Web could not remember that one news item you saw on TV and wanted to explore further? 
 
-We present an application that links the activities of watching the news on TV and looking up information on the Web. The application is the outcome of a process of user-centered design to gather information needs, iteratively design the prototype and evaluate the usability. The application supports two types of information needs: (i) looking up factual information about persons, locations, organisations and concepts occuring in the newscast, and (ii) exploring more indepth information about a news item. An important design consideration to realize support for these types of information needs was to respect the intrinsic user behavior associated with watching TV, lean back, and browsing the Web, lean forward. As a result the application operates in two modes. 
+% Semantic
+The annotation problem has been traditionally addressed by applying multimedia analysis techniques \cite{ballan2011event}, but extracting semantic information from a video is still a challenging task. One possible approach consist in using Named Entity Recognition (NER) over the textual information attached to particular video fragment. Those techniques are an essential component within the Information Extraction field that focus on: identifying atomic information units in texts, named entities; classifying entities into predefined categories (also called context types) and linking to real world objects using web identifiers (Named Entity Disambiguation). A growing number of APIs provide such a service, like AlchemyAPI\footnote{\fontsize{8pt}{1em}\selectfont \url{http://www.alchemyapi.com/}} or DBpedia Spotlight\footnote{\fontsize{8pt}{1em}\selectfont \url{http://spotlight.dbpedia.org/}}. If the textual information attached to a video contains temporal references (e.g. subtitles), it is possible to align the entities with the time when they appear in the video. Katsiouli et al.~\cite{katsiouli2007} have demonstrated that applying named entity recognition techniques in combination with domain ontologies on video subtitles can produce good results for video classification.
+
+%News Prototypes
+Another example of content augmentation of news broadcasts is the work of Dowman et al. [3] Their system identifies individual stories in news broadcasts and annotates them with content from the World Wide Web. Annotations are used to produce summarized texts that can be employed potentially for enrichment of electronic programme guides. The focus of Dowman’s study is the technology that enables annotation. It presents an interface aimed for the postproduction (curating and editing) phase of the enriched hypermedia. This work relates to LinkedTV News in its integration of television newscasts with Web content. However it differs in that LinkedTV News is concerned with news consumption and not news postproduction.Ardissono et al. [4] investigated personalization in the context of interactive news broadcasts through tracking and
+inferring user content interests and media preferences. The authors describe the design and implementation of a broadcast news generator. This system combines automated video understanding and extraction together with user modeling to provide individualized personalcasts. We coincide with this work in that personalization should be an important ingredient in any an end-user hyperlinked news interface.
+
+% SecondScreen
+The employment of secondary devices for control of TV content was also explored in [12], where four major usages of the secondary screen in interactive television are identified and discussed: control, enrich, share and transfer television content.Second screen multitasking is a growing practice that has triggered the interest of industry and stimulated the proliferation of commercial applications for dual device set- ups. One of the best known examples is Yahoo’s IntoNow [15]. IntoNow uses audio fingerprinting technology to automatically detect the program that users are watching and deliver related contents. 
+
+
+
+%%%%%%%%%%%%%%%%%%
+%%%  TV News  %%%
+%%%%%%%%%%%%%%%%%%
+
+\section{TV News}
+\label{sec:tvnews}
+
+LinkedTV News is a second screen application for tablets that acts as a companion to viewers when watching the news broadcasts.. Its main goal is to enrich television newscasts by integrating them with other media thus, integrating and concentrating the different activities related to getting informed about the news in one interactive multiple screen, and potentially mobile experience. It is designed to accommodate two viewing modes in terms of interaction: a lean back mode and a lean forward mode. 
 
 In the passive mode the application operates as a second screen that is synced with the TV program. This mode supports the user with looking up factual information by presenting timed slides about the entities that occur in the news. As this mode requiers no interaction it unobtrusevely complements the lean back TV viewing experience. In addition, the passive mode provides functionality to bookmark news items. This one click interaction forms the bridge to the active mode of the application. 
 
 In the active mode the user actively explores a specific news item. In this mode the application contains articles from the Web that are related to the news item in different dimensions. The dimension, such as articles from different news sources, opionion articles and a timeline of past events, are intended to support the specific user information needs that were identified in the study. While it is possible to use the active mode during the broadcast, this will disrupt the passive TV viewing experience. By first bookmarking the news item the user can come back to the application at a more appropriate time to start or continue the exploration.
 
-%%%%%%%%%%%%%%%%%%
-%%%  Annotating TV News  %%%
-%%%%%%%%%%%%%%%%%%
 
-\section{Annotating TV News}
+\section{The lean back mode}
+\label{sec:leanbackmode}
+
+In this mode, the application presents the user with summarized additional information about elements of the news, for example, basic information about the location or people involved. This happens in the form of a slideshow with short texts and images that acts as a sort of news ticker to the broadcast appearing in the main screen. It automatically synchronizes with the TV, and requires no action from the user, but allows the user to browse slides, save them or bookmark news for later exploration. This lean back mode of the application intends to be as close as possible to a free hand, and passive experience. The slides are presented without need for user interaction, so the user can relax, share with her company and pay attention only to that which really calls her interest while easily bookmarking her favorite news for later reading. This favors an asynchronous mode of interaction that respects a passive mode of TV watching, and allows postponing the more attention demanding activities by using the TV program as an index for deciding what to explore in a more suitable time.
+
+
 To reconstruct the semantic context associated with one particular news video, we extract the main concepts and entities from the subtitles and explain how they are related to each other. The complete processing workflow takes as input the textual transcript of a multimedia resource illustrating an event, as well as the start and end date for which that particular event is considered. We assume that this event has a minimal presence and coverage on the Web to ensure that the subsequent data mining techniques can collect sufficient data to reconstruct the event's context. 
 
 For each news item, we perform named-entity recognition over the corresponding subtitles using the NERD framework~\cite{Rizzo2012b}. In our experiment, the language of the videos is English but NERD supports other languages. The output of this phase is a collection of entities annotated using the NERD Ontology\footnote{\fontsize{8pt}{1em}\selectfont \url{http://nerd.eurecom.fr/ontology/nerd-v0.5.n3}}, that comes with a first relevance score obtained from the extractors which have been used. This set includes a list of ranked entities that are explicitly mentioned during the video. Other entity based video annotation tools~\cite{yunjia2013} stop at this point even when entities that can be relevant for the viewer in the context of the event are still missing. We tackle this problem by extending this first list of concepts via the entity expansion component.
@@ -124,12 +147,27 @@ Entities with a higher $relScore_{i}$ in the final classification are considered
   \item Finally, some entities not spotted in the original transcripts but important in the context of the event are now included in the list of relevant items since they have been extracted from the collected documents.
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%  3. Visualization of Entities  %%%
-%%%%%%%%%%%%%%%%%%%%%%%
+\section{The lean forward mode}
+\label{sec:leanforwardmode}
 
-\section{Visualization: the case of Edward Snowden}
-\label{sec:usecase}
+The lean forward mode of the application acts as a hub where the user can access different news sources at different levels of information depth and communicated through different media formats (video, text, audio) This mode offers the following browsing alternatives:
+
+·  Follow a news story throughout time.
+
+·  Follow news throughout sources.
+
+·  Access different opinions about a topic in the news.
+
+·  Geo-localized information (common people’s remarks, tweets, according to their country of origin).
+
+·  In depth curated information about a subject.
+
+Some simple manual configuration of preferences (personalization) is possible, and the user can choose her favorite news categories and her preferred authors or news sources. The application counts with an alert about important updates in users’ bookmarked news and about other relevant events (R6). Alerts can be turned on and off at user’s will. The application is loosely linked with social media through geo-localized twitter comments in the “global to local” section, and the possibility to share slides or articles through diverse means like email, Facebook or twitter.
+
+The application LinkedTV News synchronizes its content automatically with the television without any action required from the users. It has television remote control functionalities, so it is possible to use it for pausing or browsing the television program as well as for skipping news sections or news stories.
+
+LinkedTV News is different from news aggregators because it is structured around news headlines other than a news category, a source or trends in the news. Every headline can be explored from different levels, in the lean back mode by dissecting the headline in its actors and settings, and in the lean forward mode by showing it from different viewpoints.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%  4. Discussion  %%%
@@ -137,9 +175,18 @@ Entities with a higher $relScore_{i}$ in the final classification are considered
 
 \section{Discussion}
 \label{sec:discussion}
-During the first day (February 26th), no party was a clear winner of the election, but Monti's defeat stood out. International newspapers reported about it, fueling the discussion on social platforms. Similarly, the 27th is the day after Bersani's speech. His words about the dramatic situation became popular and viral. Another example of the usefulness of our automatic approach is the day 28th, when the world started to investigate about \textit{The cult of Silvio Berlusconi} and the reaction from the crowd (catched by our storyboard) is immediately depicted. On March 1st, the Italian president visited Germany and met the German chancellor Merkel to discuss, amongst others, the Italian elections. On March 2nd, Grillo claimed no collaboration with any party. Grillo is the \textit{Movimento 5 Stelle} leader, incorrectly identified by our approach as \textit{Stelle}. This is due to the lack of knowledge of our entity spotter. In the same day, both a famous Italian talk show and an Economist article triggered a lot of discussion about the current Italian situation, Grillo and Berlusconi. Again, Grillo and Berlusconi were trending. On March 3rd, the kick-off meeting of the Beppe Grillo's party took place. The main action lines were rejecting possible alliance with any parties and especially with the Bersani's party.
+The preliminary results indicate that we can successfully expand the initial set of recognized entities with more relevant concepts not detected by pure named entity recognition approaches. Exploring DBpedia paths along the named entities occurring in news media leads to a more accurate ranking of important concepts and even if it does not necessary introduce any new top item, it brings forward more related entities with additional information about the broader context of an event.
 
-The election use case showed that our approach provides useful insights about events while leveraging from the crowd. In a wide sense, it provides a snapshot of how the crowd is experiencing an event. We focus on generating visual summaries in order to illustrate those phenomena. We argue that the need of human intervention in the collection and interpretation processes has been drastically reduced. The different clustering operations and the user interface give to the user a tool for interpreting the story, even if some background knowledge about the event is required. Although the crowd talked about the same main entities reported by daily newspapers, we observe that different satirical expressions for talking about politics are used. Actually, numerous images and posts are biased towards being satirical. Tracking and understanding an event from social data should also include the popularity of microposts. We have planned to use this measure as an additional mean for weighting the importance of a social peak. We will further demonstrate how this tool can been used to generate visual summaries of highly viral memes such as \emph{Harlem Shake}.
+Main Assumptions (obtained through the studies conducted)
+
+·  TV viewers value the possibility to decide whether to multitask while they watch TV or simply sit and relax.
+
+·  TV newscasts viewing is regarded as a potentially social activity, while online newspaper reading is an act best performed individually.
+
+·  The television newscasts are useful for the users in that they present a panoramic view about the most important recent happenings, while online newspapers are better suited for in depth information searching.
+
+The initial contextual studies were performed with nineteen participants in total. However, we decided to continue working only with the eight who more closely matched our target audience. 
+We performed in-depth open interviews with each of them, and gathered information about their experiences and their information needs. They suggested functionalities and helped envision an application that would potentially fulfill those needs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
