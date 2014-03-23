@@ -55,7 +55,7 @@ The presence of appropriate TV content annotations and usage of custom visualiza
 In particular, this second screen prototype (i) collects and offers information about persons, locations, organizations and concepts occurring in the newscast, and (ii) combines them for enriching the underlying story along five main dimensions: in other sources, expert's opinions, timeline of the news, in depth information, and geo-localized comments and remarks from other viewers.  
 Starting from preliminary insights coming from the named entities spotted on the video subtitles, we expand this initial context to a broader event representation by relying in the knowledge of other non-structured Web documents talking about the same fact. This makes possible to generate a much richer, context aware metadata of a TV program that boost the viewer interaction and opens new possibilities in the hyperlinked television domain. 
 
-\keywords{Television, Visual Summarization, Topic Generation}
+\keywords{Content Annotation, Content Enrichment, Entity Expansion, Television News}
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,23 +64,21 @@ Starting from preliminary insights coming from the named entities spotted on the
 
 \section{Introduction}
 
-People consume news from multiple sources, such as television, Web, radio and newspaper. Typically the activities using these sources are independent~\cite{}. For example, we watch the newscast on TV at a fixed time of the day to get an overview of the main news. We use the Web to keep track of the News throughout the day, and when we have more time to spare we actively browse the Web to explore the news items that we are interested in. At one hand this separation is natural as the activities have different characteristics and are integrated into our lifes in our way. At the other hand the different sources can complement each other and when consumed as such will enrich our news experience. The problem is that in practice it is difficult to manually link the different activities together. How often did you think of something you wanted to lookup on the Web while watching a newscast, but didn't, or while browsing the Web could not remember that one news item you saw on TV and wanted to explore further? 
-
-% Semantic
-The annotation problem has been traditionally addressed by applying multimedia analysis techniques \cite{ballan2011event}, but extracting semantic information from a video is still a challenging task. One possible approach consist in using Named Entity Recognition (NER) over the textual information attached to particular video fragment. Those techniques are an essential component within the Information Extraction field that focus on: identifying atomic information units in texts, named entities; classifying entities into predefined categories (also called context types) and linking to real world objects using web identifiers (Named Entity Disambiguation). A growing number of APIs provide such a service, like AlchemyAPI\footnote{\fontsize{8pt}{1em}\selectfont \url{http://www.alchemyapi.com/}} or DBpedia Spotlight\footnote{\fontsize{8pt}{1em}\selectfont \url{http://spotlight.dbpedia.org/}}. If the textual information attached to a video contains temporal references (e.g. subtitles), it is possible to align the entities with the time when they appear in the video. Katsiouli et al.~\cite{katsiouli2007} have demonstrated that applying named entity recognition techniques in combination with domain ontologies on video subtitles can produce good results for video classification.
+People consume news from multiple sources, such as television, Web, radio and newspaper. For example, we watch the newscast on TV early in the morning to get an overview of the main news, we use the Web to keep track of the News throughout the day, and when we have some spare time we actively browse the Web to explore the news items that we are interested in. At the end of the day, our understanding about the news is a compendium of various information pieces coming from different sources, which complement each other and enrich our news experience. The problem is that in practice it is difficult and time consuming to manually gather all those insights together. Our research tackles this inconvenience by quickly offering extra information about the newscast organized in various dimensions which intend to illustrate all those details you watched but would like to further explore. 
 
 %News Prototypes
-Another example of content augmentation of news broadcasts is the work of Dowman et al. [3] Their system identifies individual stories in news broadcasts and annotates them with content from the World Wide Web. Annotations are used to produce summarized texts that can be employed potentially for enrichment of electronic programme guides. The focus of Dowman’s study is the technology that enables annotation. It presents an interface aimed for the postproduction (curating and editing) phase of the enriched hypermedia. This work relates to LinkedTV News in its integration of television newscasts with Web content. However it differs in that LinkedTV News is concerned with news consumption and not news postproduction.Ardissono et al. [4] investigated personalization in the context of interactive news broadcasts through tracking and
-inferring user content interests and media preferences. The authors describe the design and implementation of a broadcast news generator. This system combines automated video understanding and extraction together with user modeling to provide individualized personal casts. We coincide with this work in that personalization should be an important ingredient in any an end-user hyperlinked news interface.
+There are already some approaches that address this content augmentation of news broadcasts, like the work done by Dowman et al.~\cite{Dowman2013}. Their system identifies individual stories in news broadcasts and annotates them with content from the World Wide Web. Annotations are used to produce summarized texts that can be employed potentially for enrichment of electronic program guides. Even this is a first step through the integration of television newscasts with Web content, it does not trust completely in automatic processes for providing a user centric news consumption and delegates on an interface for the postproduction (curating and editing) phase of the enriched hypermedia. Regarding the technical aspect the we opted for a Second screen multitasking schema, a growing practice that has triggered the interest of industry and stimulated the proliferation of commercial applications for dual device set- ups. One of the best known examples is Yahoo’s IntoNow~\footnote{\fontsize{8pt}{1em}\selectfont \url{http://www.intonow.com/ci}}, which uses audio fingerprinting technology to automatically detect the program that users are watching and deliver related contents. 
+
+% Semantic
+The problem of multimedia annotation has been traditionally addressed by applying different analysis techniques~\cite{ballan2011event}, but extracting semantic information from a video is still a challenging task. One possible approach consists in using Named Entity Recognition (NER) over the textual information attached to particular video fragment. Those techniques are an essential component within the Information Extraction field that focus on: identifying atomic information units in texts, named entities; classifying entities into predefined categories (also called context types) and linking to real world objects using web identifiers (Named Entity Disambiguation). A growing number of APIs provide such a service, like AlchemyAPI\footnote{\fontsize{8pt}{1em}\selectfont \url{http://www.alchemyapi.com/}} or DBpedia Spotlight\footnote{\fontsize{8pt}{1em}\selectfont \url{http://spotlight.dbpedia.org/}}. If the textual information attached to a video contains temporal references (e.g. subtitles), it is possible to align the entities with the time when they appear in the video. Katsiouli et al.~\cite{katsiouli2007} have demonstrated that applying named entity recognition techniques in combination with domain ontologies on video subtitles can produce good results for video classification. Other entity based annotation tool has been proposed by Yunjia et al.~\cite{yunjia2013} also relies in name entity recognition techniques for finding relevant concepts within the video fragments. 
 
 % SecondScreen
-The employment of secondary devices for control of TV content was also explored in [12], where four major usages of the secondary screen in interactive television are identified and discussed: control, enrich, share and transfer television content.Second screen multitasking is a growing practice that has triggered the interest of industry and stimulated the proliferation of commercial applications for dual device set- ups. One of the best known examples is Yahoo’s IntoNow [15]. IntoNow uses audio fingerprinting technology to automatically detect the program that users are watching and deliver related contents. 
 
 %%%%%%%%%%%%%%%%%%
 %%%  TV News  %%%
 %%%%%%%%%%%%%%%%%%
 
-\section{TV News}
+\section{Augmenting and Enriching TV News}
 \label{sec:tvnews}
 
 LinkedTV News is a second screen application for tablets that acts as a companion to viewers when watching the news broadcasts.. Its main goal is to enrich television newscasts by integrating them with other media thus, integrating and concentrating the different activities related to getting informed about the news in one interactive multiple screen, and potentially mobile experience. It is designed to accommodate two viewing modes in terms of interaction: a lean back mode and a lean forward mode. 
@@ -89,12 +87,12 @@ In the passive mode the application operates as a second screen that is synced w
 
 In the active mode the user actively explores a specific news item. In this mode the application contains articles from the Web that are related to the news item in different dimensions. The dimension, such as articles from different news sources, opionion articles and a timeline of past events, are intended to support the specific user information needs that were identified in the study. While it is possible to use the active mode during the broadcast, this will disrupt the passive TV viewing experience. By first bookmarking the news item the user can come back to the application at a more appropriate time to start or continue the exploration.
 
-
-\subsection{The lean back mode}
+%%%  The Lean-back Mode  %%%
+\subsection{The Lean-back Mode}
 \label{sec:leanbackmode}
 
+Requires minimum interaction. The main elements and information about them.
 In this mode, the application presents the user with summarized additional information about elements of the news, for example, basic information about the location or people involved. This happens in the form of a slideshow with short texts and images that acts as a sort of news ticker to the broadcast appearing in the main screen. It automatically synchronizes with the TV, and requires no action from the user, but allows the user to browse slides, save them or bookmark news for later exploration. This lean back mode of the application intends to be as close as possible to a free hand, and passive experience. The slides are presented without need for user interaction, so the user can relax, share with her company and pay attention only to that which really calls her interest while easily bookmarking her favorite news for later reading. This favors an asynchronous mode of interaction that respects a passive mode of TV watching, and allows postponing the more attention demanding activities by using the TV program as an index for deciding what to explore in a more suitable time.
-
 
 To reconstruct the semantic context associated with one particular news video, we extract the main concepts and entities from the subtitles and explain how they are related to each other. The complete processing workflow takes as input the textual transcript of a multimedia resource illustrating an event, as well as the start and end date for which that particular event is considered. We assume that this event has a minimal presence and coverage on the Web to ensure that the subsequent data mining techniques can collect sufficient data to reconstruct the event's context. 
 
@@ -143,10 +141,11 @@ Entities with a higher $relScore_{i}$ in the final classification are considered
   \item Finally, some entities not spotted in the original transcripts but important in the context of the event are now included in the list of relevant items since they have been extracted from the collected documents.
 \end{itemize}
 
-\subsection{The lean forward mode}
+%%%  The Lean-Forward Mode %%%
+\subsection{The Lean-Forward Mode}
 \label{sec:leanforwardmode}
 
-The lean forward mode of the application acts as a hub where the user can access different news sources at different levels of information depth and communicated through different media formats (video, text, audio) This mode offers the following browsing alternatives:
+The lean forward mode (active mode) of the application acts as a hub where the user can access different news sources at different levels of information depth and communicated through different media formats (video, text, audio) This mode offers the following browsing alternatives:
 
 ·  Follow a news story throughout time.
 
