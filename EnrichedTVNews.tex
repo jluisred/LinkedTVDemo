@@ -33,10 +33,8 @@
 \frontmatter          % for the preliminaries
 \pagestyle{headings}  % switches on printing of running heads
 \mainmatter              % start of the contributions
-\title{LinkedTV News \\ The 2013 Italian Election}
-\titlerunning{Tracking and Analyzing The 2013 Italian Election}  % abbreviated title (for running head)
 
-\title{LinkedTV News a companion application for newscasts}
+\title{Augmenting TV Newcasts via Web Expansion}
 \author{Michiel Hildebrand\inst{1}, Lilia Perez Romero\inst{1}, Jos\'e Luis Redondo Garc\'ia\inst{2}, Rapha\"el Troncy\inst{2}}
 \institute{CWI, Amsterdam, The Netherlands, \\
 \email{\{M.Hildebrand, L.Perez\}@cwi.nl}
@@ -73,12 +71,10 @@ The annotation problem has been traditionally addressed by applying multimedia a
 
 %News Prototypes
 Another example of content augmentation of news broadcasts is the work of Dowman et al. [3] Their system identifies individual stories in news broadcasts and annotates them with content from the World Wide Web. Annotations are used to produce summarized texts that can be employed potentially for enrichment of electronic programme guides. The focus of Dowman’s study is the technology that enables annotation. It presents an interface aimed for the postproduction (curating and editing) phase of the enriched hypermedia. This work relates to LinkedTV News in its integration of television newscasts with Web content. However it differs in that LinkedTV News is concerned with news consumption and not news postproduction.Ardissono et al. [4] investigated personalization in the context of interactive news broadcasts through tracking and
-inferring user content interests and media preferences. The authors describe the design and implementation of a broadcast news generator. This system combines automated video understanding and extraction together with user modeling to provide individualized personalcasts. We coincide with this work in that personalization should be an important ingredient in any an end-user hyperlinked news interface.
+inferring user content interests and media preferences. The authors describe the design and implementation of a broadcast news generator. This system combines automated video understanding and extraction together with user modeling to provide individualized personal casts. We coincide with this work in that personalization should be an important ingredient in any an end-user hyperlinked news interface.
 
 % SecondScreen
 The employment of secondary devices for control of TV content was also explored in [12], where four major usages of the secondary screen in interactive television are identified and discussed: control, enrich, share and transfer television content.Second screen multitasking is a growing practice that has triggered the interest of industry and stimulated the proliferation of commercial applications for dual device set- ups. One of the best known examples is Yahoo’s IntoNow [15]. IntoNow uses audio fingerprinting technology to automatically detect the program that users are watching and deliver related contents. 
-
-
 
 %%%%%%%%%%%%%%%%%%
 %%%  TV News  %%%
@@ -94,7 +90,7 @@ In the passive mode the application operates as a second screen that is synced w
 In the active mode the user actively explores a specific news item. In this mode the application contains articles from the Web that are related to the news item in different dimensions. The dimension, such as articles from different news sources, opionion articles and a timeline of past events, are intended to support the specific user information needs that were identified in the study. While it is possible to use the active mode during the broadcast, this will disrupt the passive TV viewing experience. By first bookmarking the news item the user can come back to the application at a more appropriate time to start or continue the exploration.
 
 
-\section{The lean back mode}
+\subsection{The lean back mode}
 \label{sec:leanbackmode}
 
 In this mode, the application presents the user with summarized additional information about elements of the news, for example, basic information about the location or people involved. This happens in the form of a slideshow with short texts and images that acts as a sort of news ticker to the broadcast appearing in the main screen. It automatically synchronizes with the TV, and requires no action from the user, but allows the user to browse slides, save them or bookmark news for later exploration. This lean back mode of the application intends to be as close as possible to a free hand, and passive experience. The slides are presented without need for user interaction, so the user can relax, share with her company and pay attention only to that which really calls her interest while easily bookmarking her favorite news for later reading. This favors an asynchronous mode of interaction that respects a passive mode of TV watching, and allows postponing the more attention demanding activities by using the TV program as an index for deciding what to explore in a more suitable time.
@@ -110,7 +106,7 @@ The entire logic is illustrated in in Figure~\ref{fig:namedEntityExpansion} and 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.6\textwidth]{figure/ExpansionDiagram}
+\includegraphics[width=1\textwidth]{figure/ExpansionDiagram}
 \caption{Schema of Named Entity Expansion Algorithm.}
 \label{fig:namedEntityExpansion}%\end{figure}
 \end{figure}
@@ -147,7 +143,7 @@ Entities with a higher $relScore_{i}$ in the final classification are considered
   \item Finally, some entities not spotted in the original transcripts but important in the context of the event are now included in the list of relevant items since they have been extracted from the collected documents.
 \end{itemize}
 
-\section{The lean forward mode}
+\subsection{The lean forward mode}
 \label{sec:leanforwardmode}
 
 The lean forward mode of the application acts as a hub where the user can access different news sources at different levels of information depth and communicated through different media formats (video, text, audio) This mode offers the following browsing alternatives:
@@ -168,6 +164,12 @@ The application LinkedTV News synchronizes its content automatically with the te
 
 LinkedTV News is different from news aggregators because it is structured around news headlines other than a news category, a source or trends in the news. Every headline can be explored from different levels, in the lean back mode by dissecting the headline in its actors and settings, and in the lean forward mode by showing it from different viewpoints.
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{figure/DemoScreen}
+\caption{Schema of Named Entity Expansion Algorithm.}
+\label{fig:namedEntityExpansion}%\end{figure}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%  4. Discussion  %%%
