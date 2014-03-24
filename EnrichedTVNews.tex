@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Tracking and Analyzing The 2013 Italian Election   %%%
+%%%  Augmenting TV Newscasts via Entity Expansion  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass{llncs}
@@ -34,8 +34,8 @@
 \pagestyle{headings}  % switches on printing of running heads
 \mainmatter              % start of the contributions
 
-\title{Augmenting TV Newcasts via Web Expansion}
-\author{Michiel Hildebrand\inst{1}, Lilia Perez Romero\inst{1}, Jos\'e Luis Redondo Garc\'ia\inst{2}, Rapha\"el Troncy\inst{2}}
+\title{Augmenting TV Newscasts via Entity Expansion}
+\author{Jos\'e Luis Redondo Garc\'ia\inst{2}, Michiel Hildebrand\inst{1}, Lilia Perez Romero\inst{1}, Rapha\"el Troncy\inst{2}}
 \institute{CWI, Amsterdam, The Netherlands, \\
 \email{\{M.Hildebrand, L.Perez\}@cwi.nl}
 \and
@@ -55,7 +55,7 @@ The presence of appropriate TV content annotations and usage of custom visualiza
 In particular, this second screen prototype (i) collects and offers information about persons, locations, organizations and concepts occurring in the newscast, and (ii) combines them for enriching the underlying story along five main dimensions: in other sources, expert's opinions, timeline of the news, in depth information, and geo-localized comments and remarks from other viewers.  
 Starting from preliminary insights coming from the named entities spotted on the video subtitles, we expand this initial context to a broader event representation by relying in the knowledge of other non-structured Web documents talking about the same fact. This makes possible to generate a much richer, context aware metadata of a TV program that boost the viewer interaction and opens new possibilities in the hyperlinked television domain. 
 
-\keywords{Content Annotation, Content Enrichment, Entity Expansion, Television News}
+\keywords{Multimedia Annotation, Entity Expansion, Newscast Enrichment}
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -74,18 +74,29 @@ The problem of multimedia annotation has been traditionally addressed by applyin
 
 % SecondScreen
 
-%%%%%%%%%%%%%%%%%%
-%%%  TV News  %%%
-%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Augmenting and Enriching TV News    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Augmenting and Enriching TV News}
 \label{sec:tvnews}
 
-LinkedTV News is a second screen application for tablets that acts as a companion to viewers when watching the news broadcasts.. Its main goal is to enrich television newscasts by integrating them with other media thus, integrating and concentrating the different activities related to getting informed about the news in one interactive multiple screen, and potentially mobile experience. It is designed to accommodate two viewing modes in terms of interaction: a lean back mode and a lean forward mode. 
+LinkedTV News is a second screen application for tablets that acts as a companion to viewers when watching the news broadcasts. Its main goal is to enrich television newscasts by integrating them with other media thus. It is designed to accommodate two viewing modes in terms of interaction: a lean back mode and a lean forward mode. 
 
-In the passive mode the application operates as a second screen that is synced with the TV program. This mode supports the user with looking up factual information by presenting timed slides about the entities that occur in the news. As this mode requiers no interaction it unobtrusevely complements the lean back TV viewing experience. In addition, the passive mode provides functionality to bookmark news items. This one click interaction forms the bridge to the active mode of the application. 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{figure/DemoScreen}
+\caption{Demo screen captures corresponding to the (1) Lean Back Mode and the (2) Lean Forward mode.}
+\label{fig:namedEntityExpansion}%\end{figure}
+\end{figure}
 
-In the active mode the user actively explores a specific news item. In this mode the application contains articles from the Web that are related to the news item in different dimensions. The dimension, such as articles from different news sources, opionion articles and a timeline of past events, are intended to support the specific user information needs that were identified in the study. While it is possible to use the active mode during the broadcast, this will disrupt the passive TV viewing experience. By first bookmarking the news item the user can come back to the application at a more appropriate time to start or continue the exploration.
+In the passive mode the application operates as a second screen that is synced with the TV program. This mode supports the user with looking up factual information by presenting timed slides about the entities that occur in the news. As this mode requires no interaction it unobtrusively complements the lean back TV viewing experience. In addition, the passive mode provides functionality to bookmark news items. This one click interaction forms the bridge to the active mode of the application. 
+
+In the active mode the user actively explores a specific news item. In this mode the application contains articles from the Web that are related to the news item in different dimensions. The dimension, such as articles from different news sources, opinion articles and a timeline of past events, are intended to support the specific user information needs that were identified in the study. While it is possible to use the active mode during the broadcast, this will disrupt the passive TV viewing experience. By first bookmarking the news item the user can come back to the application at a more appropriate time to start or continue the exploration.
+
+The application LinkedTV News synchronizes its content automatically with the television without any action required from the users. 
+
+IN the following sections we will give the details:
 
 %%%  The Lean-back Mode  %%%
 \subsection{The Lean-back Mode}
@@ -109,6 +120,8 @@ The entire logic is illustrated in in Figure~\ref{fig:namedEntityExpansion} and 
 \label{fig:namedEntityExpansion}%\end{figure}
 \end{figure}
 
+\subsubsection{Query Generation}
+\label{sec:querygeneration}
 The \emph{Five W's} is a popular concept of information gathering in journalistic reporting. It captures the main aspects of a story: who, when, what, where, and why~\cite{LiJia2007}. We try to represent the news item in terms of four of those five W's (who is involved in the event, where the event is taking place, what the event is about, and when it has happened) in order to generate a query that retrieves documents associated to the same event.
 
 First, the original entities are mapped to the NERD Core ontology, which considers 10 main classes: Thing, Amount, Animal, Event, Function, Organization, Location, Person, Product and Time. From those ten different categories, we generalize to three classes: the Who from \url{nerd:Person} and \url{nerd:Organization}, the Where from \url{nerd:Location}, and the What from the rest of NERD types after discarding \url{nerd:Time} and \url{nerd:Amount}. The When or so-called temporal dimension does not need to be computed since it is considered to be provided by the video publisher.
@@ -134,49 +147,36 @@ In order to calculate the frequency of a particular resource within the entire c
 \subsubsection{Entity Ranking}
 The final step of the expansion consists of ranking the different named entities obtained so far. To create this ordered list, we assigned a score to every entity according to the following features: relative frequency in the transcripts of the event video; relative frequency over the additional document; and average relevance according to the named entity extractors. The three dimensions are combined via a weighted sum where the frequency in the video subtitles has a bigger impact, followed by the frequency on the searched documents and the relevance from the extractors. The final output of the entity expansion operation is a list of entities together with their ranking score and the frequency in both the main video and in the collected documents retrieved from the search engine.
 
-Entities with a higher $relScore_{i}$ in the final classification are considered more representative for describing the context than the original entities. Furthermore, we observe that:
-\begin{itemize}
-  \item The bigger the sample size, and the better becomes the ranking. Entities appearing repeatedly in the additional documents will be promoted while those appearing rarely will be pushed back to the end of the list.
-  \item Entities that originally have not been disambiguated can now have their corresponding URL if any of the similar instances appearing in the additional documents provide a link to a Web resource. The same occurs with incomplete or misspelled labels.
-  \item Finally, some entities not spotted in the original transcripts but important in the context of the event are now included in the list of relevant items since they have been extracted from the collected documents.
-\end{itemize}
+Entities with a higher $relScore_{i}$ in the final classification are considered more representative for describing the context than the original entities. 
+
 
 %%%  The Lean-Forward Mode %%%
-\subsection{The Lean-Forward Mode}
+\subsection{The Active Mode}
 \label{sec:leanforwardmode}
 
-The lean forward mode (active mode) of the application acts as a hub where the user can access different news sources at different levels of information depth and communicated through different media formats (video, text, audio) This mode offers the following browsing alternatives:
+The active mode of the application acts as a hub where the viewers can access extra documents for complementing what is being told in the main news video. A similar logic to the one explained in Section~\ref{sec:querygeneration} is applied over the main entities coming from the expansion process for building custom queries to be launched on Google CSE, but relaxing or emphasizing some particular \emph{W's} and operating over particular lists of Web resources. In contrast to traditional news aggregators that simply gather related documents, the results are organized around five different axes that intent to fulfill the viewer' needs. 
 
-·  Follow a news story throughout time.
+\textbf{Timeline.} Follows the news story throughout time by confectioning an list of ordered documents that includes the main antecedents of the present facts. For getting those document we rely on a query without any prior time constraint, which is created when including the most relevant entity from the Who, Was, Where inside the pattern ''The'' + entity + "case". For our example we have obtained the text "The Edward Snowden case".
 
-·  Follow news throughout sources.
+\textbf{In other Sources.} This section of the interface is dedicated to showing the selected news as it was reported in other newspapers, radio, or TV programs. We launch a query generated from the set of expanded entities by following exactly the same logic in Section~\ref{sec:querygeneration}, over a curated list of resources including mainly Journals and television broadcasters Web sites. In our example the query looks like "Asylum Edward Snowden Russia"
 
-·  Access different opinions about a topic in the news.
+\textbf{Opinion.} This section is devoted to gathering opinions regarding the selected news item from different authors with a certain presupposed knowledge about the matter. The list of documents is obtained by executing the same query generated for dimension ''In other Sources'', but operating over a different list of curated resources that considers only subdomains specialized in opinion documents.
 
-·  Geo-localized information (common people’s remarks, tweets, according to their country of origin).
+\textbf{Geo-localized information.} This section includes live feeds from Twitter expressing people’s remarks, comments and feelings filtered by subject and geo-location. We use the same query built for the dimension ''In other Sources'', but reducing the temporal dimension $t$ to the last 7 days from the current time in order to see what the people is thinking about the particular news item.
 
-·  In depth curated information about a subject.
-
-Some simple manual configuration of preferences (personalization) is possible, and the user can choose her favorite news categories and her preferred authors or news sources. The application counts with an alert about important updates in users’ bookmarked news and about other relevant events (R6). Alerts can be turned on and off at user’s will. The application is loosely linked with social media through geo-localized twitter comments in the “global to local” section, and the possibility to share slides or articles through diverse means like email, Facebook or twitter.
-
-The application LinkedTV News synchronizes its content automatically with the television without any action required from the users. It has television remote control functionalities, so it is possible to use it for pausing or browsing the television program as well as for skipping news sections or news stories.
-
-LinkedTV News is different from news aggregators because it is structured around news headlines other than a news category, a source or trends in the news. Every headline can be explored from different levels, in the lean back mode by dissecting the headline in its actors and settings, and in the lean forward mode by showing it from different viewpoints.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=1\textwidth]{figure/DemoScreen}
-\caption{Schema of Named Entity Expansion Algorithm.}
-\label{fig:namedEntityExpansion}%\end{figure}
-\end{figure}
-
+\textbf{In depth.} Includes in depth coverage articles that offer a more extensive view about the seed news item. They documents under this dimension are obtained by combining the most relevant entity from the Who, Was, Where with the keyword "in depth" and removing any temporal restriction and extending the search domain to the entire Web. In our example the textual will be "Edward Snowden in depth";
+		
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%  4. Discussion  %%%
 %%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Discussion}
 \label{sec:discussion}
-The preliminary results indicate that we can successfully expand the initial set of recognized entities with more relevant concepts not detected by pure named entity recognition approaches. Exploring DBpedia paths along the named entities occurring in news media leads to a more accurate ranking of important concepts and even if it does not necessary introduce any new top item, it brings forward more related entities with additional information about the broader context of an event.
+The preliminary results indicate that we can successfully expand the initial set of recognized entities with more relevant concepts not detected by pure named entity recognition approaches. 
+he same occurs with incomplete or misspelled labels.
+Finally, some entities not spotted in the original transcripts but important in the context of the event are now included in the list of relevant items since they have been extracted from the collected documents.
+
+, it brings forward more related entities with additional information about the broader context of an event.
 
 Main Assumptions (obtained through the studies conducted)
 
@@ -185,6 +185,7 @@ Main Assumptions (obtained through the studies conducted)
 ·  TV newscasts viewing is regarded as a potentially social activity, while online newspaper reading is an act best performed individually.
 
 ·  The television newscasts are useful for the users in that they present a panoramic view about the most important recent happenings, while online newspapers are better suited for in depth information searching.
+This section includes live feeds from twitter, Figure 17. The tweets included here, however, are filtered by subject and by geo-location.
 
 The initial contextual studies were performed with nineteen participants in total. However, we decided to continue working only with the eight who more closely matched our target audience. 
 We performed in-depth open interviews with each of them, and gathered information about their experiences and their information needs. They suggested functionalities and helped envision an application that would potentially fulfill those needs.
