@@ -86,7 +86,7 @@ LinkedTV News is a second screen application for tablets that acts as a companio
 \begin{figure}[h!]
 \centering
 \includegraphics[width=1\textwidth]{figure/DemoScreen}
-\caption{Demo screen captures corresponding to the (1) Lean Back Mode and the (2) Lean Forward mode.}
+\caption{Demo screen captures corresponding to the (1) active mode and the (2) passive mode.}
 \label{fig:namedEntityExpansion}%\end{figure}
 \end{figure}
 
@@ -154,11 +154,11 @@ Entities with a higher $relScore_{i}$ in the final classification are considered
 \subsection{The Active Mode}
 \label{sec:leanforwardmode}
 
-The active mode of the application acts as a hub where the viewers can access extra documents for complementing what is being told in the main news video. A similar logic to the one explained in Section~\ref{sec:querygeneration} is applied over the main entities coming from the expansion process for building custom queries to be launched on Google CSE, but relaxing or emphasizing some particular \emph{W's} and operating over particular lists of Web resources. In contrast to traditional news aggregators that simply gather related documents, the results are organized around five different axes that intent to fulfill the viewer' needs. 
+The active mode of the application acts as a hub where the viewers can access extra documents for complementing what is being told in the main news video. A similar logic to the one explained in Section~\ref{sec:querygeneration} is applied over the main entities coming from the expansion process for building custom queries in Google CSE, but relaxing or emphasizing some particular \emph{W's} and operating over particular lists of Web resources. In contrast to traditional news aggregators that simply gather related documents, the results are organized around five different axes that intent to fulfill the viewer' needs. 
 
 \textbf{Timeline.} Follows the news story throughout time by confectioning an list of ordered documents that includes the main antecedents of the present facts. For getting those document we rely on a query without any prior time constraint, which is created when including the most relevant entity from the Who, Was, Where inside the pattern ''The'' + entity + "case". For our example we have obtained the text "The Edward Snowden case".
 
-\textbf{In other Sources.} This section of the interface is dedicated to showing the selected news as it was reported in other newspapers, radio, or TV programs. We launch a query generated from the set of expanded entities by following exactly the same logic in Section~\ref{sec:querygeneration}, over a curated list of resources including mainly Journals and television broadcasters Web sites. In our example the query looks like "Asylum Edward Snowden Russia"
+\textbf{In other sources.} This section of the interface is dedicated to showing the selected news as it was reported in other newspapers, radio, or TV programs. We launch a query generated from the set of expanded entities by following exactly the same logic in Section~\ref{sec:querygeneration}, over a curated list of resources including mainly Journals and television broadcasters Web sites. In our example the query looks like "Asylum Edward Snowden Russia"
 
 \textbf{Opinion.} This section is devoted to gathering opinions regarding the selected news item from different authors with a certain presupposed knowledge about the matter. The list of documents is obtained by executing the same query generated for dimension ''In other Sources'', but operating over a different list of curated resources that considers only subdomains specialized in opinion documents.
 
@@ -172,23 +172,11 @@ The active mode of the application acts as a hub where the viewers can access ex
 
 \section{Discussion}
 \label{sec:discussion}
-The preliminary results indicate that we can successfully expand the initial set of recognized entities with more relevant concepts not detected by pure named entity recognition approaches. 
-he same occurs with incomplete or misspelled labels.
-Finally, some entities not spotted in the original transcripts but important in the context of the event are now included in the list of relevant items since they have been extracted from the collected documents.
+The preliminary results indicate that we are able to offer to the viewer a relevant set of entities that expands the initial concepts detected by traditional named entity recognition approaches and covers a wider range of user information needs. Many details not explicitly mentioned in the video but important in the context of the newscasts are now available to the viewer to be consumed, either during he is watching the news (passive mode) or when he browses additional insights (active mode).
 
-, it brings forward more related entities with additional information about the broader context of an event.
+At the same time those detected concepts are used as powerful triggers for detecting extra knowledge from the Web along 5 main dimensions. Some of those axes are focused on providing the big picture of the news event (\emph{timeline} and \emph{in depth}). Others are intended to help the viewer to corroborate the facts in alternative sources (\emph{In other sources}) and obtain feedback from professionals and journalists (\emph{opinion}). Finally, keeping in mind that TV newscasts viewing is a potentially social activity, one of the dimensions include live feeds from twitter filtered by subject and by geo-location. 
 
-Main Assumptions (obtained through the studies conducted)
-
-á  TV viewers value the possibility to decide whether to multitask while they watch TV or simply sit and relax.
-
-á  TV newscasts viewing is regarded as a potentially social activity, while online newspaper reading is an act best performed individually.
-
-á  The television newscasts are useful for the users in that they present a panoramic view about the most important recent happenings, while online newspapers are better suited for in depth information searching.
-This section includes live feeds from twitter, Figure 17. The tweets included here, however, are filtered by subject and by geo-location.
-
-The initial contextual studies were performed with nineteen participants in total. However, we decided to continue working only with the eight who more closely matched our target audience. 
-We performed in-depth open interviews with each of them, and gathered information about their experiences and their information needs. They suggested functionalities and helped envision an application that would potentially fulfill those needs.
+In the future we plan to continue improving the way detected concepts are ranked in relevance and therefore chosen as candidates for answering particular viewer's demands or trigger new enrichments. We also look forward to a more exhaustive evaluation based on viewers' feedback from surveys and open interviews where we can gather more information about which are the viewer's requirements to potentially fulfill the aimed hypervideo experience.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
