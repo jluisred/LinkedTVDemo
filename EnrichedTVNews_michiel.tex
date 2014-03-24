@@ -50,13 +50,13 @@ EURECOM, Sophia Antipolis, France, \\
 %%%  Abstract  %%%
 %%%%%%%%%%%%%%%%%%
 
-\begin{abstract}
-We present an approach that leverages on the knowledge present on the Web for identifying and enriching relevant items inside a News video and displaying them in a timely and user friendly fashion. 
-This second screen prototype (i) collects and offers information about persons, locations, organizations and concepts occurring in the newscast, and (ii) combines them for enriching the underlying story along five main dimensions: expert's opinions, timeline, in depth, in other sources, and geo-localized comments from other viewers.  
-Starting from preliminary insights coming from the named entities spotted on the video subtitles, we expand this initial context to a broader event representation by relying in the knowledge of other non-structured Web documents talking about the same fact. This makes possible to generate a much richer, context aware metadata of a TV program that boost the viewer interaction and opens new possibilities in the hyperlinked television domain. 
-
-\keywords{Multimedia Annotation, Entity Expansion, Newscast Enrichment}
-\end{abstract}
+%\begin{abstract}
+%We present an approach that leverages on the knowledge present on the Web for identifying and enriching relevant items inside a News video and displaying them in a timely and user friendly fashion. 
+%This second screen prototype (i) collects and offers information about persons, locations, organizations and concepts occurring in the newscast, and (ii) combines them for enriching the underlying story along five main dimensions: expert's opinions, timeline, in depth, in other sources, and geo-localized comments from other viewers.  
+%Starting from preliminary insights coming from the named entities spotted on the video subtitles, we expand this initial context to a broader event representation by relying in the knowledge of other non-structured Web documents talking about the same fact. This makes possible to generate a much richer, context aware metadata of a TV program that boost the viewer interaction and opens new possibilities in the hyperlinked television domain. 
+%
+%\keywords{Multimedia Annotation, Entity Expansion, Newscast Enrichment}
+%\end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  1. Introduction  %%%
@@ -74,19 +74,19 @@ The active mode of the LinkedTV news second screen application allows the user t
 %%%  Augmenting and Enriching TV News    %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{LinkedTV News companion application}
-\label{sec:tvnews}
-
 \begin{figure}[h!]
 \centering
 \includegraphics[width=1\textwidth]{figure/DemoScreen}
 \caption{Demo screen captures corresponding to the (1) active mode and the (2) passive mode.}
-\label{fig:namedEntityExpansion}%\end{figure}
+\label{fig:interface}%\end{figure}
 \end{figure}
 
-In the passive mode the LinkedTV news application operates as a second screen that is synced with the TV program. This mode supports the user with looking up factual information about the entities that occur in the news. The screenshot on the left side of Figure \ref{fig:namedEntityExpansion} shows the interface of the passive mode. The application shows entities per news item and is refreshed when the next news item start. The interface contains three parts. At the top it contains a carousel of the entities related to the news item. The middle of the interface show the entity slide with information about the active entity. This information is taken from DBPedia. The bottom part of the interface provides information about the current news item, controls for the video and a button to bookmark the current news item. The passive mode is designed to form an unobtrusive complement to the lean back TV viewing experience. The entity slides are synced to the content in the video and no interaction is required to get access to the factual information. It is possible to manually select another entity, for example, when information was missed. The design choice for a passive approach with little interaction sets a high demand on the quality of the generated content. 
+\section{LinkedTV News companion application}
+\label{sec:tvnews}
 
-The bookmark button in the passive mode provides a simple form of interaction by which the user can store a news item. This helps the user to switch to the active mode at a later time. In other words, the user can experience the newscast in lean back mode and directly after the broadcast or at a later time use the active mode to explore the bookmarked news items. The screenshot on the right side of Figure \ref{fig:namedEntityExpansion} shows the interface of the active mode. The left column of the interface shows a list of bookmarked items, the item on Edward Snowden is selected. The middle column shows the five browsing dimenions. The left column shows the article that is currently selected. The browsing dimensions are based on information neends collected from end users. The timeline gives an overview of past events. The opinion dimension gives access to articles in which journalists express their opinion about the topic. In other sources different perspectives on the news can be found as expressed by different news providers. The in depth dimensions allows exploration of more detailed background. The geo-localized dimension shows how people in different places in the world respond to the news item on social media. The content for these different dimensions have specific characteristics. To find this content on the Web we need to capture these characteristics in the queries that we submit to the search engine.
+In the passive mode the LinkedTV news application operates as a second screen that is synced with the TV program. This mode supports the user with looking up factual information about the entities that occur in the news. The screenshot on the left side of Figure \ref{fig:interface} shows the interface of the passive mode. The application shows entities per news item and is refreshed when the next news item start. The interface contains three parts. At the top it contains a carousel of the entities related to the news item. The middle of the interface show the entity slide with information about the active entity. This information is taken from DBPedia. The bottom part of the interface provides information about the current news item, controls for the video and a button to bookmark the current news item. The passive mode is designed to form an unobtrusive complement to the lean back TV viewing experience. The entity slides are synced to the content in the video and no interaction is required to get access to the factual information. It is possible to manually select another entity, for example, when information was missed. The design choice for a passive approach with little interaction sets a high demand on the quality of the generated content. 
+
+The bookmark button in the passive mode provides a simple form of interaction by which the user can store a news item. This helps the user to switch to the active mode at a later time. In other words, the user can experience the newscast in lean back mode and directly after the broadcast or at a later time use the active mode to explore the bookmarked news items. The screenshot on the right side of Figure \ref{fig:interface} shows the interface of the active mode. The left column of the interface shows a list of bookmarked items, the item on Edward Snowden is selected. The middle column shows the five browsing dimenions. The left column shows the article that is currently selected. The browsing dimensions are based on information neends collected from end users. The timeline gives an overview of past events. The opinion dimension gives access to articles in which journalists express their opinion about the topic. In other sources different perspectives on the news can be found as expressed by different news providers. The in depth dimensions allows exploration of more detailed background. The geo-localized dimension shows how people in different places in the world respond to the news item on social media. The content for these different dimensions have specific characteristics. To find this content on the Web we need to capture these characteristics in the queries that we submit to the search engine.
 
 
 %%%  The Passive Mode  %%%
@@ -118,17 +118,17 @@ The final step of the expansion consists of ranking the different named entities
 %%%  The Lean-Forward Mode %%%
 \section{Related content for the Active Mode}
 \label{sec:leanforwardmode}
-The active mode of the application acts as a hub where the viewers can access extra documents for complementing what is being told in the main news video. A similar logic to the one explained in Section~\ref{sec:leanbackmode} is applied over the main entities coming from the expansion process for building custom queries in Google CSE, but relaxing or emphasizing some particular \emph{W's} and operating over particular lists of Web resources. In contrast to traditional news aggregators that simply gather related documents, the results are organized around five different axes that intent to fulfill the viewer' needs. 
+The active mode of the application acts as a hub where the viewers can access extra documents for complementing what is being told in the main news video. A similar logic to the one explained in Section~\ref{sec:leanbackmode} is applied over the main entities coming from the expansion process for building custom queries in Google CSE, but relaxing or emphasizing some particular \emph{W's} and operating over particular lists of Web resources.
 
-\textbf{Timeline.} Follows the news story throughout time by confectioning an list of ordered documents that includes the main antecedents of the present facts. For getting those document we rely on a query without any prior time constraint, which is created when including the most relevant entity from the Who, Was, Where inside the pattern ''The'' + entity + "case". For our example we have obtained the text "The Edward Snowden case".
+\textbf{Timeline.} For getting those document we rely on a query without any prior time constraint, which is created when including the most relevant entity from the Who, Was, Where inside the pattern ''The'' + entity + "case". For our example we have obtained the text "The Edward Snowden case".
 
-\textbf{In other sources.} This section of the interface is dedicated to showing the selected news as it was reported in other newspapers, radio, or TV programs. We launch a query generated from the set of expanded entities by following exactly the same logic used during the entity expansion, over a curated list of resources including mainly Journals and television broadcasters Web sites. In our example the query looks like "Asylum Edward Snowden Russia"
+\textbf{In other sources.} We launch a query generated from the set of expanded entities by following exactly the same logic used during the entity expansion, over a curated list of resources including mainly Journals and television broadcasters Web sites. In our example the query looks like "Asylum Edward Snowden Russia"
 
-\textbf{Opinion.} This section is devoted to gathering opinions regarding the selected news item from different authors with a certain presupposed knowledge about the matter. The list of documents is obtained by executing the same query generated for dimension ''In other Sources'', but operating over a different list of curated resources that considers only subdomains specialized in opinion documents.
+\textbf{Opinion.} The list of documents is obtained by executing the same query generated for dimension ''In other Sources'', but operating over a different list of curated resources that considers only subdomains specialized in opinion documents.
 
-\textbf{Geo-localized information.} This section includes live feeds from Twitter expressing people’s remarks, comments and feelings filtered by subject and geo-location. We use the same query built for the dimension ''In other Sources'', but reducing the temporal dimension $t$ to the last 7 days from the current time in order to see what the people is thinking about the particular news item.
+\textbf{Geo-localized information.} This section includes live feeds from Twitter expressing peoples remarks, comments and feelings filtered by subject and geo-location. We use the same query built for the dimension ''In other Sources'', but reducing the temporal dimension $t$ to the last 7 days from the current time in order to see what the people is thinking about the particular news item.
 
-\textbf{In depth.} Includes in depth coverage articles that offer a more extensive view about the seed news item. They documents under this dimension are obtained by combining the most relevant entity from the Who, Was, Where with the keyword "in depth" and removing any temporal restriction and extending the search domain to the entire Web. In our example the textual will be "Edward Snowden in depth";
+\textbf{In depth.} The documents under this dimension are obtained by combining the most relevant entity from the Who, Was, Where with the keyword "in depth" and removing any temporal restriction and extending the search domain to the entire Web. In our example the textual will be "Edward Snowden in depth";
 		
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%  4. Discussion  %%%
@@ -136,11 +136,11 @@ The active mode of the application acts as a hub where the viewers can access ex
 
 \section{Discussion}
 \label{sec:discussion}
-The preliminary results indicate that we are able to offer to the viewer a relevant set of entities that expands the initial concepts detected by traditional named entity recognition approaches and covers a wider range of user information needs. Many details not explicitly mentioned in the video but important in the context of the newscasts are now available to the viewer to be consumed, either during he is watching the news in passive mode or when he browses additional insights in the so called active mode.
+The preliminary results indicate that we are able to offer to the viewer a relevant set of entities that expands the initial concepts detected by traditional named entity recognition approaches. Many details not explicitly mentioned in the video but important in the context of the newscasts are now available to the viewer to be consumed, either during he is watching the news in passive mode or when he browses additional insights in the so called active mode. We are currently preparing an experiment to evaluate the entity detection and expansion.
 
-At the same time those detected concepts are used as powerful triggers for detecting extra knowledge from the Web along 5 main dimensions. Some of those axes are focused on providing the big picture of the news event (\emph{timeline} and \emph{in depth}). Others are intended to help the viewer to corroborate the facts in alternative sources (\emph{in other sources}) and obtain feedback from professionals and journalists (\emph{opinion}). Finally, keeping in mind that TV newscasts viewing is a potentially social activity, one of the dimensions include live feeds from twitter filtered by subject and by geo-location. 
+%At the same time those detected concepts are used as powerful triggers for detecting extra knowledge from the Web along 5 main dimensions. Some of those axes are focused on providing the big picture of the news event (\emph{timeline} and \emph{in depth}). Others are intended to help the viewer to corroborate the facts in alternative sources (\emph{in other sources}) and obtain feedback from professionals and journalists (\emph{opinion}). Finally, keeping in mind that TV newscasts viewing is a potentially social activity, one of the dimensions include live feeds from twitter filtered by subject and by geo-location. 
 
-In the future we plan to continue improving the way detected concepts are ranked in relevance and therefore chosen as candidates for answering particular viewer's demands or trigger new enrichments. We also look forward to a more exhaustive evaluation based on viewers' feedback from surveys and open interviews where we can gather more information about which are the viewer's requirements to potentially fulfill the aimed hypervideo experience.
+%In the future we plan to continue improving the way detected concepts are ranked in relevance and therefore chosen as candidates for answering particular viewer's demands or trigger new enrichments. We also look forward to a more exhaustive evaluation based on viewers' feedback from surveys and open interviews where we can gather more information about which are the viewer's requirements to potentially fulfill the aimed hypervideo experience.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
